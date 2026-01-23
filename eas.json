@@ -7,15 +7,24 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "node": "18.17.1"
+      "node": "20",
+      "env": {
+        "NODE_VERSION": "20"
+      }
     },
     "preview": {
       "distribution": "internal",
-      "node": "18.17.1"
+      "node": "20",
+      "env": {
+        "NODE_VERSION": "20"
+      }
     },
     "production": {
       "autoIncrement": true,
-      "node": "18.17.1",
+      "node": "20",
+      "env": {
+        "NODE_VERSION": "20"
+      },
       "android": {
         "buildType": "app-bundle"
       }
@@ -25,7 +34,10 @@
       "android": {
         "buildType": "apk"
       },
-      "node": "18.17.1"
+      "node": "20",
+      "env": {
+        "NODE_VERSION": "20"
+      }
     }
   },
   "submit": {
