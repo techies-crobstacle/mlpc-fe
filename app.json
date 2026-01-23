@@ -5,12 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon.png",
-
     "scheme": "myapp",
     "entryPoint": "node_modules/expo-router/build/entry.js",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.ritik13.mlpc",
@@ -18,7 +16,6 @@
         "ITSAppUsesNonExemptEncryption": false
       }
     },
-
     "android": {
       "icon": "./assets/images/app-icon.png",
       "adaptiveIcon": {
@@ -27,31 +24,30 @@
       },
       "package": "com.ritik13.mlpc"
     },
-
     "web": {
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/app-icon.png"
     },
-
     "splash": {
       "image": "./assets/images/app-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-
     "plugins": [
       "expo-router",
       "expo-font",
       "expo-web-browser"
     ],
-
     "experiments": {
       "typedRoutes": true
     },
-
     "extra": {
-  "router": {}
-}
+      "router": {},
+      "eas": {
+        "projectId": "dab01c59-da96-4de0-a48f-2f066faee246"
+      }
+    },
+    "owner": "techies_crobstacle"
   }
 }
