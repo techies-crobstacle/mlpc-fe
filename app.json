@@ -11,7 +11,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ritik13.mlpc",
+      "bundleIdentifier": "com.mlpc.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/images/app-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ritik13.mlpc"
+      "package": "com.mlpc.app"
     },
     "web": {
       "bundler": "metro",
