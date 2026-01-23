@@ -7,21 +7,21 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "node": "20",
+      "node": "20.11.1",
       "env": {
         "NODE_VERSION": "20"
       }
     },
     "preview": {
       "distribution": "internal",
-      "node": "20",
+      "node": "20.11.1",
       "env": {
         "NODE_VERSION": "20"
       }
     },
     "production": {
       "autoIncrement": true,
-      "node": "20",
+      "node": "20.11.1",
       "env": {
         "NODE_VERSION": "20"
       },
@@ -34,7 +34,7 @@
       "android": {
         "buildType": "apk"
       },
-      "node": "20",
+      "node": "20.11.1",
       "env": {
         "NODE_VERSION": "20"
       }
