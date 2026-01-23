@@ -46,7 +46,14 @@
       "router": {},
       "eas": {
         "projectId": "dab01c59-da96-4de0-a48f-2f066faee246"
-      }
+      },
+      "FIREBASE_API_KEY": "AIzaSyDLcOeC85cNvGWif-74A_zj3GPX73MYOao",
+      "FIREBASE_AUTH_DOMAIN": "mlpc-d24cd.firebaseapp.com",
+      "FIREBASE_PROJECT_ID": "mlpc-d24cd",
+      "FIREBASE_STORAGE_BUCKET": "mlpc-d24cd.firebasestorage.app",
+      "FIREBASE_MESSAGING_SENDER_ID": "1066822821873",
+      "FIREBASE_APP_ID": "1:1066822821873:web:182be2f3dab0be40a08650",
+      "FIREBASE_MEASUREMENT_ID": "G-TSTX00J941"
     },
     "owner": "techies_crobstacle"
   }
