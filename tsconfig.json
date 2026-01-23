@@ -1,0 +1,17 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "app/HomeScreen.jsx", "app/SplashScreen.tsx", "components/SignIn.jsx", "app/_layout.jsx", "app/_layout.jsx", "app/ResetPassword.jsx"  ]
+}
