@@ -1,18 +1,26 @@
 const API_URL = 'https://mlpc-backend.onrender.com'; // Replace with your server IP
 // const API_URL = 'http://192.168.29.124:8000'; // Replace with your server IP
 const TIMEOUT = 10000;
+import * as SecureStore from 'expo-secure-store';
 
 export const fetchWithTimeout = async (endpoint, options = {}) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
     try {
+        // Get session cookie from SecureStore
+        let sessionCookie = null;
+        try {
+            sessionCookie = await SecureStore.getItemAsync('session');
+        } catch {}
+
         const response = await fetch(`${API_URL}${endpoint}`, {
             ...options,
             signal: controller.signal,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                ...(sessionCookie ? { 'Cookie': `session=${sessionCookie}` } : {}),
                 ...options.headers,
             },
         });

@@ -5,7 +5,7 @@
 // import { firebaseAuth } from "@/firebaseconfig";
 // import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 // import Toast from 'react-native-toast-message';
-// import * as Keychain from 'react-native-keychain';
+import * as SecureStore from 'expo-secure-store';
 
 // const SignIn = () => {
 //   const [email, setEmail] = useState("");
@@ -247,11 +247,19 @@ const SignIn = () => {
         throw new Error(errorData.error || 'Login failed');
       }
 
-      const data = await response.json();
-      const sessionToken = data.token;
+      // Extract session cookie from response headers
+      const cookieHeader = response.headers.get('set-cookie');
+      let sessionCookie = null;
+      if (cookieHeader) {
+        // Example: session=abc123; Path=/; ...
+        const match = cookieHeader.match(/session=([^;]+);/);
+        if (match) {
+          sessionCookie = match[1];
+        }
+      }
 
-      if (sessionToken) {
-        await Keychain.setGenericPassword('session', sessionToken);
+      if (sessionCookie) {
+        await SecureStore.setItemAsync('session', sessionCookie);
       }
 
       Toast.show({
@@ -263,16 +271,21 @@ const SignIn = () => {
       navigation.navigate('HomeScreen');
 
     } catch (error) {
+      console.log('SignIn error:', error);
+      let errorMsg = error.message || 'Authentication failed';
+      if (errorMsg.includes('setGenericPasswordForOptions')) {
+        errorMsg = 'Secure storage error: Keychain may not be installed or linked properly.';
+      }
       Toast.show({
         type: 'error',
         text1: 'Sign In Failed',
-        text2: error.message || 'Authentication failed'
+        text2: errorMsg
       });
       try {
         await signOut(auth);
-        await Keychain.resetGenericPassword();
-      } catch {
-        // Optional error handling for sign-out/reset failure
+        await SecureStore.deleteItemAsync('session');
+      } catch (e) {
+        console.log('SignOut/SecureStore error:', e);
       }
     } finally {
       setLoading(false);
