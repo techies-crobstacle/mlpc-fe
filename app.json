@@ -4,7 +4,7 @@
     "slug": "mlpc",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/app-icon.png",
+    "icon": "./assets/images/logo2.png",
     "scheme": "myapp",
     "entryPoint": "node_modules/expo-router/build/entry.js",
     "userInterfaceStyle": "automatic",
@@ -17,9 +17,9 @@
       }
     },
     "android": {
-      "icon": "./assets/images/app-icon.png",
+      "icon": "./assets/images/logo2.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app-icon.png",
+        "foregroundImage": "./assets/images/logo2.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.mlpc.app"
@@ -27,10 +27,10 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/app-icon.png"
+      "favicon": "./assets/images/logo2.png"
     },
     "splash": {
-      "image": "./assets/images/app-icon.png",
+      "image": "./assets/images/logo2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
