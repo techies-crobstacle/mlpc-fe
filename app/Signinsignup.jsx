@@ -22,7 +22,6 @@ const Signinsignup = () => {
   const params = useLocalSearchParams();
 
   useEffect(() => {
-    // Show logout toast if needed
     if (params?.showLogoutToast) {
       Toast.show({
         type: 'success',
@@ -30,16 +29,11 @@ const Signinsignup = () => {
         text2: 'Logged out successfully',
         visibilityTime: 2000,
       });
-    }
 
-    // Auto-login: redirect to HomeScreen if user is already signed in
-    import('../firebaseconfig').then(({ firebaseAuth }) => {
-      const user = firebaseAuth.currentUser;
-      if (user && user.emailVerified) {
-        router.replace('HomeScreen');
-      }
-    });
-  }, [params?.showLogoutToast, router]);
+      // Clear the parameter after showing toast to prevent re-triggering
+      // Note: In Expo Router, params are cleared when navigating away
+    }
+  }, [params?.showLogoutToast]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

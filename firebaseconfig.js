@@ -1,37 +1,45 @@
-import { initializeApp } from "firebase/app";
-import { initializeAuth, getReactNativePersistence } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAnalytics, isSupported } from "firebase/analytics";
-import Constants from "expo-constants";
+// // firebaseconfig.js
+// import { initializeApp } from "firebase/app";
+// import { getAuth } from "firebase/auth";
+// import { getFirestore } from "firebase/firestore";  // Import Firestore
+// // import { getAnalytics } from "firebase/analytics";
 
-const extra = Constants.expoConfig?.extra || Constants.manifest?.extra || {};
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDLcOeC85cNvGWif-74A_zj3GPX73MYOao",
+//   authDomain: "mlpc-d24cd.firebaseapp.com",
+//   projectId: "mlpc-d24cd",
+//   storageBucket: "mlpc-d24cd.firebasestorage.app",
+//   messagingSenderId: "1066822821873",
+//   appId: "1:1066822821873:web:182be2f3dab0be40a08650",
+//   measurementId: "G-TSTX00J941"
+// };
+
+// // Initialize Firebase
+// export const app = initializeApp(firebaseConfig);
+// export const firebaseAuth = getAuth(app);  // Initialize Auth
+
+// export const db = getFirestore(app);  // Initialize Firestore
+
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
-  apiKey: extra.FIREBASE_API_KEY,
-  authDomain: extra.FIREBASE_AUTH_DOMAIN,
-  projectId: extra.FIREBASE_PROJECT_ID,
-  storageBucket: extra.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: extra.FIREBASE_MESSAGING_SENDER_ID,
-  appId: extra.FIREBASE_APP_ID,
-  measurementId: extra.FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyDLcOeC85cNvGWif-74A_zj3GPX73MYOao",
+  authDomain: "mlpc-d24cd.firebaseapp.com",
+  projectId: "mlpc-d24cd",
+  storageBucket: "mlpc-d24cd.firebasestorage.app",
+  messagingSenderId: "1066822821873",
+  appId: "1:1066822821873:web:182be2f3dab0be40a08650",
+  measurementId: "G-TSTX00J941"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Auth with persistence
-const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage),
-});
-
-// Firestore
+// Initialize Auth first, then export
+const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Analytics (optional)
-let analytics;
-if (typeof window !== "undefined") {
-  isSupported().then((supported) => {
-    if (supported) analytics = getAnalytics(app);
-  });
-}
-
-export { app, auth as firebaseAuth, db, analytics };
+export { app, auth as firebaseAuth, db };

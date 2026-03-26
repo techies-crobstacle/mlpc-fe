@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 import { firebaseAuth } from '../firebaseconfig';
 import { db } from '../firebaseconfig';
 import { doc, getDoc } from 'firebase/firestore';
@@ -13,7 +12,6 @@ const { width } = Dimensions.get('window');
 const Sidebar = ({ onClose }) => {
     const auth = firebaseAuth;
     const navigation = useNavigation();
-    const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState(null);
 
@@ -39,25 +37,16 @@ const Sidebar = ({ onClose }) => {
         if (loading) return;
         setLoading(true);
         try {
-            // Call backend logout API
-            const sessionCookie = await import('expo-secure-store').then(SecureStore => SecureStore.getItemAsync('session'));
-            await fetch('https://mlpc-backend.onrender.com/auth/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...(sessionCookie ? { 'Cookie': `session=${sessionCookie}` } : {}),
-                },
-            });
-            // Remove session from SecureStore
-            await import('expo-secure-store').then(SecureStore => SecureStore.deleteItemAsync('session'));
             await auth.signOut();
-            Toast.show({
-                type: 'success',
-                text1: 'Logged Out',
-                text2: 'You have been logged out successfully.',
-                visibilityTime: 2000,
+            navigation.reset({
+                index: 0,
+                routes: [{ 
+                    name: 'Signinsignup',
+                    params: { 
+                        showLogoutMessage: true 
+                    }
+                }],
             });
-            router.replace({ pathname: '/Signinsignup', params: { showLogoutMessage: true } });
         } catch (error) {
             console.error('Error signing out: ', error);
             Toast.show({

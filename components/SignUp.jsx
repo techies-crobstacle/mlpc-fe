@@ -91,15 +91,11 @@ const SignUp = () => {
     
     // Validate form
     if (!validateForm()) {
-      // Collect all error messages into a single string
-      const errorMessages = Object.values(errors)
-        .filter(Boolean)
-        .join('\n');
       Toast.show({
         type: 'error',
         text1: 'Form Error',
-        text2: errorMessages || 'Please fix the errors in the form',
-        visibilityTime: 4000,
+        text2: 'Please fix the errors in the form',
+        visibilityTime: 3000,
       });
       return;
     }
@@ -142,11 +138,13 @@ const SignUp = () => {
         type: 'success',
         text1: 'Account Created',
         text2: 'Please check your email for verification',
-        visibilityTime: 2000,
+        visibilityTime: 4000,
       });
-
-      // Navigate to EmailVerification screen, passing the user's email
-      navigation.navigate('EmailVerification', { email: email.trim() });
+      
+      // Navigate after a delay
+      setTimeout(() => {
+        navigation.navigate('Signinsignup');
+      }, 1500);
       
     } catch (error) {
       console.error("Sign Up Error:", error);
